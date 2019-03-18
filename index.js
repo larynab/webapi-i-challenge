@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express'); 
 
 const db = require('./data/db.js'); 
 
@@ -10,12 +10,15 @@ server.get('/', (req, res) => {
   res.send('Hello Web XVII');
 });
 
-
 server.get('/now', (req, res) => {
   const now = new Date().toISOString();
   res.send(now);
 });
 
+const sendUserError = (status, message, res) => {
+  res.status(status).json({ errorMessage: message });
+  return;
+};
 
 server.post('/api/users', (req, res) => {
   const { name, bio, created_at, updated_at } = req.body;
